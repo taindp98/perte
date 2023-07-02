@@ -11,7 +11,10 @@ setuptools.setup(
     url = 'https://github.com/taindp98/perte',   
     download_url = 'https://github.com/taindp98/perte/archive/refs/tags/v0.1.tar.gz',   
     keywords = ['loss-function', 'discrimination'],  
-    install_requires=['pip', 'packaging'],
+    install_requires=[
+        'pip', 'packaging',
+        'torch', 'numpy'
+    ],
     classifiers=[
     'Development Status :: 3 - Alpha',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
     'Intended Audience :: Developers',      # Define that your audience are developers
