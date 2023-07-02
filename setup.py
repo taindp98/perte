@@ -3,13 +3,13 @@ import setuptools,re,sys
 setuptools.setup(
     name = 'perte',         
     packages = ['perte'],
-    version = '0.1',     
+    version = '0.1.1',     
     license='MIT', 
     description = 'A fast way to use the diverse loss functions in deep learning', 
     author = 'Rémi NGUYEN',                   
     author_email = 'taindp98@gmail.com',      
     url = 'https://github.com/taindp98/perte',   
-    download_url = 'https://github.com/taindp98/perte/archive/refs/tags/v0.1.tar.gz',   
+    download_url = 'https://github.com/taindp98/perte/archive/refs/tags/v0.1.1.tar.gz',   
     keywords = ['loss-function', 'discrimination'],  
     install_requires=[
         'pip', 'packaging',
