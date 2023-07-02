@@ -9,7 +9,7 @@ setuptools.setup(
     author = 'Rémi NGUYEN',                   
     author_email = 'taindp98@gmail.com',      
     url = 'https://github.com/taindp98/perte',   
-    download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',   
+    download_url = 'https://github.com/taindp98/perte/archive/refs/tags/v0.1.tar.gz',   
     keywords = ['loss-function', 'discrimination'],  
     install_requires=['pip', 'packaging'],
     classifiers=[
