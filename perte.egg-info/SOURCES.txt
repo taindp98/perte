@@ -1,0 +1,11 @@
+LICENSE.txt
+README.md
+setup.cfg
+setup.py
+perte/__init__.py
+perte/triplet_losses.py
+perte.egg-info/PKG-INFO
+perte.egg-info/SOURCES.txt
+perte.egg-info/dependency_links.txt
+perte.egg-info/requires.txt
+perte.egg-info/top_level.txt

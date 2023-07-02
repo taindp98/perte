@@ -1,1 +1,1 @@
-from triplet_losses import *
+from .triplet_losses import *
