@@ -3,7 +3,10 @@ A fast way to build lots of loss functions (```fonction de perte``` in French) i
 
 ## Features
 
-- Currently support the contrastive losses such that Triplet loss
+- Currently support:
+    - Triplet loss and its variance
+    - Angular margin penalty losses
+    - Recall loss
 
 ## Installation
 

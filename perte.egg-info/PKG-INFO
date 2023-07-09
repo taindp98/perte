@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: perte
-Version: 0.1.1
+Version: 0.1.2
 Summary: A fast way to use the diverse loss functions in deep learning
 Home-page: https://github.com/taindp98/perte
 Download-URL: https://github.com/taindp98/perte/archive/refs/tags/v0.1.1.tar.gz

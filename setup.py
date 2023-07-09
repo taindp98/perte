@@ -3,7 +3,7 @@ import setuptools,re,sys
 setuptools.setup(
     name = 'perte',         
     packages = ['perte'],
-    version = '0.1.1',     
+    version = '0.1.2',     
     license='MIT', 
     description = 'A fast way to use the diverse loss functions in deep learning', 
     author = 'Rémi NGUYEN',                   

@@ -3,6 +3,11 @@ README.md
 setup.cfg
 setup.py
 perte/__init__.py
+perte/angular_losses.py
+perte/focal_losses.py
+perte/ldam_loss.py
+perte/poly_loss.py
+perte/recall_loss.py
 perte/triplet_losses.py
 perte.egg-info/PKG-INFO
 perte.egg-info/SOURCES.txt
