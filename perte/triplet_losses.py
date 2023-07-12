@@ -72,22 +72,25 @@ class OnlineTripletLoss(nn.Module):
 
     def forward(self, embeddings, target):
         triplets = self.triplet_selector.get_triplets(embeddings, target)
-        triplets = triplets.to(self.device)
-
-        anchor = embeddings[triplets[:, 0]]
-        positive = embeddings[triplets[:, 1]]
-        negative = embeddings[triplets[:, 2]]
-        anchor = F.normalize(anchor)
-        positive = F.normalize(positive)
-        negative = F.normalize(negative)
-        d_p = (anchor - positive).pow(2).sum(1)
-        d_n = (anchor - negative).pow(2).sum(1)
-        losses = F.relu(d_p - d_n + self.margin)
-        if self.reduction == "mean":
-            return losses.mean(), d_p.mean(), d_n.mean()
-
-        return losses.sum(), d_p.mean(), d_n.mean()
-
+        if triplets.size()[0] != 0:
+            triplets = triplets.to(self.device)
+            anchor = embeddings[triplets[:, 0]]
+            positive = embeddings[triplets[:, 1]]
+            negative = embeddings[triplets[:, 2]]
+            anchor = F.normalize(anchor)
+            positive = F.normalize(positive)
+            negative = F.normalize(negative)
+            d_p = (anchor - positive).pow(2).sum(1)
+            d_n = (anchor - negative).pow(2).sum(1)
+            losses = F.relu(d_p - d_n + self.margin)
+            if self.reduction == "mean":
+                return losses.mean(), d_p.mean(), d_n.mean()
+            return losses.sum(), d_p.mean(), d_n.mean()
+        else:
+            losses = torch.tensor([self.margin], requires_grad=True)
+            d_p = torch.tensor([0.], requires_grad=True)
+            d_n = torch.tensor([0.], requires_grad=True)
+            return losses, d_p, d_n
 
 def pdist(vectors):
     distance_matrix = (
@@ -164,7 +167,7 @@ class BatchHardTripletSelector(TripletSelector):
         self.device = device
         self.margin = margin
 
-    def get_triplets(self, embeddings, labels, inputs):
+    def get_triplets(self, embeddings, labels):
 
         embeddings = embeddings.to(self.device)
         distance_matrix = pdist(embeddings)
@@ -196,9 +199,6 @@ class BatchHardTripletSelector(TripletSelector):
 
             if ap_distances[pidx] - an_distances[nidx] + self.margin > 0:
                 triplets.append([anchor, positive, negative])
-
-        if len(triplets) == 0:
-            triplets.append([anchor, positive, negative])
 
         triplets = np.array(triplets)
         return torch.LongTensor(triplets)
@@ -262,13 +262,7 @@ class FunctionNegativeTripletSelector(TripletSelector):
                         [anchor_positive[0], anchor_positive[1], hard_negative]
                     )
 
-        if len(triplets) == 0:
-            triplets.append(
-                [anchor_positives[0][0], anchor_positives[0][1], negative_indices[0]]
-            )
-
         triplets = np.array(triplets)
-
         return torch.LongTensor(triplets)
 
 
